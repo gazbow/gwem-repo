@@ -45,11 +45,31 @@ function AnchorCard({ streaks }) {
   );
 }
 
+// Returns the keystone streak (alcohol) and any secondary streaks for cross-link warnings.
+// If a secondary streak (porn) is very short and the keystone is established,
+// a slip in the secondary is likely connected — surface this diagnostic link.
+function detectKeystoneLink(streaks) {
+  const keystone = streaks.find(s => s.id === 'alcohol');
+  const secondary = streaks.filter(s => s.id !== 'alcohol');
+  if (!keystone || !secondary.length) return null;
+  // If keystone is established (7+ days) and any secondary is very early (≤3 days),
+  // the secondary streak is likely downstream of the keystone behaviour.
+  const newSecondary = secondary.filter(s => s.day <= 3);
+  if (keystone.day >= 7 && newSecondary.length) {
+    return {
+      keystone,
+      secondary: newSecondary,
+    };
+  }
+  return null;
+}
+
 function RiskFlags({ streaks }) {
   const flagged = streaks.filter(s => s.phase?.riskFlag);
   const lesserEvil = detectLesserEvilRisk(streaks);
+  const keystoneLink = detectKeystoneLink(streaks);
 
-  if (!flagged.length && !lesserEvil) return null;
+  if (!flagged.length && !lesserEvil && !keystoneLink) return null;
 
   return (
     <>
@@ -64,6 +84,17 @@ function RiskFlags({ streaks }) {
           <p className="flag-title">⚠ Watch for the trade</p>
           <p className="caption">
             One streak is established, another is new. The brain may try to frame substituting one for the other as a reasonable compromise. It is not — it is the same avoidance mechanism wearing a different mask. Name it if it appears.
+          </p>
+        </div>
+      )}
+      {keystoneLink && (
+        <div className="flag-card" style={{ borderColor: 'var(--teal)' }}>
+          <p className="flag-title" style={{ color: 'var(--teal)' }}>◈ Keystone check</p>
+          <p className="caption">
+            {keystoneLink.secondary.map(s => s.profile.label).join(' and ')} {keystoneLink.secondary.length === 1 ? 'is' : 'are'} still early. Alcohol is the keystone behaviour — when alcohol is solid, the downstream behaviours tend to follow. Keep the keystone clean and the rest gets easier.
+          </p>
+          <p className="caption" style={{ marginTop: 8 }}>
+            If the secondary streak slips, check the alcohol status first — that's where to look for the root cause.
           </p>
         </div>
       )}

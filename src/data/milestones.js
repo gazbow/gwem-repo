@@ -1,15 +1,16 @@
 // Key milestones per addiction with neurological context
 export const MILESTONES = {
   alcohol: [
-    { day: 1,  label: 'Day One',         detail: 'Alcohol clearing from blood. Sleep disrupted. The hardest day is often the first — you are already past it.' },
-    { day: 7,  label: 'One Week',         detail: 'Sleep recovering. Liver inflammation reducing. Brain fog beginning to lift. One week of new data.' },
-    { day: 14, label: 'Two Weeks',        detail: 'Dopamine recalibrating. Anxiety measurably lower. Skin hydration improving. This is the first real shift.' },
-    { day: 21, label: 'Three Weeks',      detail: 'Habit loops rewiring. Cravings shorter. Blood pressure lowering. Gut stabilising.' },
-    { day: 30, label: 'One Month',        detail: 'Liver enzymes normalised. GABA/glutamate balance restored. REM sleep improved. Identity-shift threshold.' },
-    { day: 45, label: 'Six Weeks',        detail: 'Testosterone rebounding. Immune function stronger. Mood more self-generated and stable.' },
-    { day: 60, label: 'Two Months',       detail: 'Grey matter recovery begins. Anxiety markers measurably down. Fatty liver resolving.' },
-    { day: 75, label: '75 Days',          detail: 'Reward pathways less reactive. Cognitive sharpness at new peak. Physical changes visible.' },
-    { day: 90, label: '90 Days',          detail: 'Research-backed neurological change threshold. Habit pathways rewired. This is the new baseline.' },
+    { day: 1,  label: 'Threshold Crossed',  detail: 'Alcohol clearing from blood. Sleep disrupted. The hardest day is often the first — you are already past it.' },
+    { day: 7,  label: 'One Week',            detail: 'Sleep recovering. Liver inflammation reducing. Brain fog beginning to lift. One week of new data. Don\'t track the scale yet — the brain is seeking dopamine substitutes and water retention masks real progress.' },
+    { day: 14, label: 'Settling',            detail: 'Dopamine recalibrating. Sleep architecture improving. Ghrelin and leptin (hunger/fullness) beginning to normalise. The shift from resistant to driven — if it\'s happening — is not a fluke. It\'s the old behaviour losing its functional purpose.' },
+    { day: 21, label: 'The Stall',           detail: 'Cortisol stays elevated at this stage, favouring fat retention. The scale looks static despite real progress underneath. This is the point most people quit — and the most common window for a prior-run blip. Expected, not failure. Track how the first 30 minutes after waking feels vs. Week 1, not the scale.' },
+    { day: 30, label: 'Evidence',            detail: 'Accumulated deficit and settling cortisol show up — visible change, often abrupt-looking. Re-weigh and compare to Day 1 baseline. Liver enzymes normalised. GABA/glutamate balance restored. REM sleep improved. The identity work of weeks 1–3 is now producing visible evidence.' },
+    { day: 35, label: 'Reserves Building',   detail: 'REM rebound typically completes 4–6 weeks in. Insulin sensitivity improving. Waist measurement now more meaningful than scale weight — visceral fat (stored preferentially from alcohol) starts dropping disproportionately.' },
+    { day: 42, label: 'Consolidation',       detail: 'Habit consolidation — identity shift moving from effortful to automatic. Does "I am someone who doesn\'t drink" feel true rather than aspirational? Energy turning outward (family, work) rather than purely inward-defensive.' },
+    { day: 60, label: 'Two Months',          detail: 'Grey matter recovery begins. Anxiety markers measurably down. Fatty liver resolving. Testosterone measurably rebounding.' },
+    { day: 75, label: '75 Days',             detail: 'Reward pathways less reactive. Cognitive sharpness at new peak. Physical changes visible and consolidating.' },
+    { day: 90, label: '90 Days',             detail: 'Research-backed neurological change threshold. Habit pathways rewired. This is the new baseline.' },
   ],
   porn: [
     { day: 7,  label: 'One Week',         detail: 'Acute withdrawal past. Dopamine receptors beginning to upregulate. The circuit is weakening.' },
