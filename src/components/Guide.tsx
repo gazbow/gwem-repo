@@ -264,7 +264,7 @@ function Landing({ onStart }: { onStart: () => void }) {
     <div className="text-center py-8 sm:py-16">
       <p className="label-eyebrow">Landart Garden Guide</p>
       <h1 className="font-display text-4xl sm:text-6xl mt-4 leading-tight text-charcoal">
-        Picture your garden
+        Picture your dream garden
         <br /> in two minutes
       </h1>
       <p className="mt-5 text-muted max-w-xl mx-auto leading-relaxed">
@@ -277,7 +277,7 @@ function Landing({ onStart }: { onStart: () => void }) {
           Start the guide
         </button>
       </div>
-      <p className="mt-4 text-sm text-muted">Takes about two minutes. No jargon.</p>
+      <p className="mt-4 text-sm text-muted">Takes about two minutes. Expert advice based on over 25 years experience.</p>
     </div>
   );
 }
