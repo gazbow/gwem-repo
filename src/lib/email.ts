@@ -86,8 +86,12 @@ export async function sendInternalNotification(summary: {
   answers: { question: string; value: string }[];
 }): Promise<void> {
   const resend = client();
-  const to = process.env.LEAD_NOTIFY_EMAIL;
-  if (!resend || !to) return;
+  // LEAD_NOTIFY_EMAIL may be a single address or a comma-separated list.
+  const to = (process.env.LEAD_NOTIFY_EMAIL ?? "")
+    .split(",")
+    .map((e) => e.trim())
+    .filter(Boolean);
+  if (!resend || to.length === 0) return;
 
   const answerRows = summary.answers
     .map(
