@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-display: "Cormorant", Georgia, serif;
+  --font-body: "Montserrat", system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-page text-charcoal font-body antialiased;
+  }
+  /* Firm brand rule: square corners everywhere. */
+  * {
+    border-radius: 0 !important;
+  }
+  /* Visible focus for keyboard users (accessibility, section 11). */
+  :focus-visible {
+    outline: 2px solid #363636;
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .label-eyebrow {
+    @apply text-gold uppercase text-xs font-medium tracking-label;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center bg-charcoal text-surface uppercase
+      tracking-button text-sm font-medium px-8 py-4 transition-colors hover:bg-black
+      disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-gold {
+    @apply inline-flex items-center justify-center bg-gold text-charcoal uppercase
+      tracking-button text-sm font-semibold px-8 py-4 transition-opacity hover:opacity-90
+      disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center border border-hairline text-charcoal
+      uppercase tracking-button text-sm px-6 py-3 transition-colors hover:border-charcoal;
+  }
+}
+
+/* Respect reduced-motion (accessibility, section 11). */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

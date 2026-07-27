@@ -1,0 +1,36 @@
+// Tunable configuration for the recommendation engine and result sizing.
+// Everything a non-developer might adjust during testing lives here (Build Spec section 8).
+
+export const scoring = {
+  // Points awarded per matched tag when scoring plants and features.
+  requiresMatch: 2, // +2 for each matched `requires` / `requiresSize` tag
+  prefersMatch: 1, // +1 for each matched `prefers` tag
+} as const;
+
+export const resultSizing = {
+  plantsMin: 5,
+  plantsMax: 8,
+  featuresMin: 3,
+  featuresMax: 5,
+  linksMax: 3,
+} as const;
+
+// Site-wide URLs. Read from env at runtime where possible; these are the fallbacks
+// so the app builds and renders sensibly with nothing configured.
+export const site = {
+  landartUrl:
+    process.env.NEXT_PUBLIC_LANDART_URL?.replace(/\/$/, "") ??
+    "https://www.landart.com.au",
+  privacyUrl:
+    process.env.NEXT_PUBLIC_PRIVACY_URL ?? "https://www.landart.com.au/privacy",
+  siteUrl:
+    process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ??
+    "https://guide.landart.com.au",
+} as const;
+
+// Resolve a link that may be a site-relative path ("/plunge-pools") into an
+// absolute URL against the live Landart site.
+export function resolveLandartUrl(pathOrUrl: string): string {
+  if (/^https?:\/\//i.test(pathOrUrl)) return pathOrUrl;
+  return `${site.landartUrl}${pathOrUrl.startsWith("/") ? "" : "/"}${pathOrUrl}`;
+}
