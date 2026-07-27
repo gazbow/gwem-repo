@@ -4,6 +4,7 @@ import Link from "next/link";
 import { getCombo, seoCombos } from "@/lib/seoCombos";
 import { generateResult } from "@/lib/engine";
 import { FullResult } from "@/components/FullResult";
+import { Logo } from "@/components/Logo";
 import { site } from "@/data/config";
 
 // Pre-built, indexable result-style pages (Build Spec section 11). Statically generated
@@ -71,8 +72,8 @@ export default function SeoResultPage({ params }: { params: { slug: string } }) 
     <main className="min-h-screen">
       <div className="border-b border-hairline bg-page">
         <div className="mx-auto max-w-3xl px-5 py-4 flex items-center justify-between">
-          <Link href="/" className="font-display text-xl tracking-[0.2em] text-charcoal">
-            LANDART
+          <Link href="/" aria-label="Landart home">
+            <Logo height={30} />
           </Link>
           <Link
             href="/"

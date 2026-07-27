@@ -6,7 +6,8 @@ import type { Feature } from "@/lib/types";
 //   avoid        — drop if the tag is present.
 //   link         — a Landart page (site-relative path; resolved to the live site).
 //
-// To add a feature: append an entry. Links are confirmed against the live site before launch.
+// To add a feature: append an entry. Links are confirmed live Landart pages (trailing slash
+// matches the site so there's no redirect hop).
 
 export const features: Feature[] = [
   {
@@ -14,7 +15,7 @@ export const features: Feature[] = [
     name: "Plunge pool",
     note: "A compact pool that cools you off without swallowing the whole garden.",
     prefers: ["use:pool", "use:entertain", "size:small", "size:medium", "style:modern"],
-    link: "/plunge-pools",
+    link: "/plunge-pools/",
     maintenance: "balanced",
     priority: 9,
   },
@@ -24,7 +25,7 @@ export const features: Feature[] = [
     note: "A long, lean pool for swimming laps and drawing the eye down the garden.",
     prefers: ["use:pool", "use:entertain", "style:modern"],
     requiresSize: ["size:large"],
-    link: "/services/garden-design-sydney",
+    link: "/inground-swimming-pools/",
     maintenance: "balanced",
     priority: 7,
   },
@@ -33,6 +34,7 @@ export const features: Feature[] = [
     name: "Fire pit",
     note: "A warm gathering point that stretches the garden into the cooler months.",
     prefers: ["use:entertain", "use:retreat", "who:adults", "style:native", "style:modern"],
+    link: "/services/landscaping/",
     maintenance: "low",
     priority: 6,
   },
@@ -42,7 +44,7 @@ export const features: Feature[] = [
     note: "Built-in cooking and prep so entertaining stays outside all evening.",
     prefers: ["use:entertain", "who:adults", "size:medium", "size:large", "style:modern"],
     avoid: ["size:small"], // needs room — not for courtyards, balconies or rooftops
-    link: "/services/home-building",
+    link: "/services/home-building/",
     maintenance: "low",
     priority: 7,
   },
@@ -51,7 +53,7 @@ export const features: Feature[] = [
     name: "Screening and hedging",
     note: "Green walls for privacy, wind protection and a sense of enclosure.",
     prefers: ["use:retreat", "size:small", "size:medium", "coastal", "style:modern", "style:lush"],
-    link: "/services/garden-design-sydney",
+    link: "/services/garden-design-sydney/",
     maintenance: "balanced",
     priority: 8,
   },
@@ -60,7 +62,7 @@ export const features: Feature[] = [
     name: "Feature lighting",
     note: "Layered low-voltage lighting that lets the garden work after dark.",
     prefers: ["use:entertain", "use:retreat", "style:modern", "style:lush"],
-    link: "/elevate-your-homes-exterior",
+    link: "/elevate-your-homes-exterior/",
     maintenance: "low",
     priority: 7,
   },
@@ -69,6 +71,7 @@ export const features: Feature[] = [
     name: "Water feature",
     note: "The soft sound of water to settle a courtyard or retreat.",
     prefers: ["use:retreat", "style:lush", "style:modern"],
+    link: "/services/landscaping/",
     maintenance: "balanced",
     priority: 5,
   },
@@ -77,7 +80,7 @@ export const features: Feature[] = [
     name: "Deck or pergola",
     note: "A shaded, level outdoor room that connects the house to the garden.",
     prefers: ["use:entertain", "use:retreat", "size:small", "size:medium", "size:large", "style:lush", "style:modern"],
-    link: "/elevate-your-homes-exterior",
+    link: "/elevate-your-homes-exterior/",
     maintenance: "low",
     priority: 8,
   },
@@ -86,6 +89,7 @@ export const features: Feature[] = [
     name: "Children's lawn",
     note: "A tough, open patch of turf for play that still looks considered.",
     prefers: ["use:family", "who:children", "who:pets", "size:medium", "size:large"],
+    link: "/services/landscaping/",
     maintenance: "balanced",
     priority: 6,
   },
@@ -94,6 +98,7 @@ export const features: Feature[] = [
     name: "Raised kitchen beds",
     note: "Waist-high beds for herbs and veg, easy to reach and easy to love.",
     prefers: ["use:kitchen", "use:family", "sun:full", "style:native", "style:lush"],
+    link: "/services/garden-design-sydney/",
     maintenance: "balanced",
     priority: 6,
   },

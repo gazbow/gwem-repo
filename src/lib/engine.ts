@@ -11,9 +11,27 @@ import { plants as defaultPlants } from "@/data/plants";
 import { features as defaultFeatures } from "@/data/features";
 import { styleProfiles } from "@/data/styleProfiles";
 import { linkTargets } from "@/data/linkTargets";
+import { gardenImages } from "@/data/gardenImages";
 import { resultSizing, resolveLandartUrl, scoring } from "@/data/config";
 
 // Rules-based, deterministic scoring — no machine learning (Build Spec section 8).
+
+/**
+ * Turn raw answers into a readable question → chosen-label(s) list.
+ * Used for the internal lead-notification email so the team can see the brief at a glance.
+ */
+export function summariseAnswers(answers: Answers): { question: string; value: string }[] {
+  const summary: { question: string; value: string }[] = [];
+  for (const question of questions) {
+    const chosen = answers[question.id] ?? [];
+    if (chosen.length === 0) continue;
+    const labels = chosen
+      .map((optionId) => question.options.find((o) => o.id === optionId)?.label)
+      .filter((l): l is string => Boolean(l));
+    if (labels.length) summary.push({ question: question.title, value: labels.join(", ") });
+  }
+  return summary;
+}
 
 /** Collect every tag implied by the visitor's answers into a Set. */
 export function collectTags(answers: Answers): Set<Tag> {
@@ -78,6 +96,22 @@ function rank<T extends { id?: string; label?: string }>(scored: Scored<T>[]): S
   });
 }
 
+/** Pick the hero image whose tags best overlap the answer set (default is the fallback). */
+function pickGardenImage(tags: Set<Tag>) {
+  const fallback = gardenImages.find((g) => g.id === "default") ?? gardenImages[0];
+  let best = fallback;
+  let bestScore = 0; // only genuine matches (score > 0) can beat the fallback
+  for (const img of gardenImages) {
+    if (img.id === "default") continue;
+    const score = img.tags.filter((t) => tags.has(t)).length;
+    if (score > bestScore || (score === bestScore && score > 0 && img.priority > best.priority)) {
+      best = img;
+      bestScore = score;
+    }
+  }
+  return best;
+}
+
 const LOAD_VALUE: Record<MaintenanceLoad, number> = { low: 1, balanced: 2, high: 3 };
 
 /** Derive a plain-language maintenance note from selected items + the optional Q7 answer. */
@@ -117,6 +151,9 @@ export function generateResult(answers: Answers, opts: EngineOptions = {}): Guid
   const plants = opts.plants ?? defaultPlants;
   const features = opts.features ?? defaultFeatures;
   const tags = collectTags(answers);
+
+  // --- Hero image: highest tag-overlap match, falling back to the default. ---
+  const image = pickGardenImage(tags);
 
   // --- Style: picked directly from the style:* answer (fallback to native). ---
   const styleTag = [...tags].find((t) => t.startsWith("style:"));
@@ -166,6 +203,7 @@ export function generateResult(answers: Answers, opts: EngineOptions = {}): Guid
       summary: style.summary,
       materials: style.materials,
     },
+    image: { src: image.file, alt: image.alt },
     plants: resultPlants,
     features: resultFeatures,
     maintenanceNote: maintenanceNote(selectedPlants, selectedFeatures, tags),

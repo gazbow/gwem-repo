@@ -10,6 +10,7 @@ import { QuestionStep } from "@/components/QuestionStep";
 import { ResultPreview } from "@/components/ResultPreview";
 import { CaptureForm } from "@/components/CaptureForm";
 import { FullResult } from "@/components/FullResult";
+import { Logo } from "@/components/Logo";
 import { site } from "@/data/config";
 
 type Stage = "landing" | "questions" | "building" | "gate" | "result";
@@ -165,9 +166,7 @@ export function Guide() {
       {/* Slim brand bar */}
       <div className="border-b border-hairline bg-page">
         <div className="mx-auto max-w-3xl px-5 py-4 flex items-center justify-between">
-          <span className="font-display text-xl tracking-[0.2em] text-charcoal">
-            LANDART
-          </span>
+          <Logo height={30} />
           {stage !== "landing" ? (
             <button
               type="button"
@@ -248,7 +247,7 @@ export function Guide() {
             <FullResult result={finalResult} />
             <p className="mt-8 text-center text-sm text-muted">
               A copy is on its way to your inbox. Prefer to talk now?{" "}
-              <a href={site.landartUrl} className="underline hover:text-gold">
+              <a href={site.contactUrl} className="underline hover:text-gold">
                 Book a consult
               </a>
               .

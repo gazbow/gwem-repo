@@ -92,6 +92,8 @@ export interface GuideResult {
     summary: string;
     materials: string;
   };
+  // Tag-matched hero image (path under /public). Renders only if the file exists.
+  image: { src: string; alt: string };
   plants: ResultPlant[];
   features: ResultFeature[];
   maintenanceNote: string;

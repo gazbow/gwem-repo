@@ -1,12 +1,19 @@
 "use client";
 
 import type { GuideResult } from "@/lib/types";
+import { GardenHero } from "@/components/GardenHero";
 
 // The teaser shown before capture: style name, a summary line, and 2-3 headline items,
 // with the rest gated behind the form (Build Spec section 3, step 4).
 export function ResultPreview({ result }: { result: GuideResult }) {
   return (
     <div className="bg-surface border border-hairline">
+      <GardenHero
+        src={result.image.src}
+        alt={result.image.alt}
+        priority
+        className="h-48 sm:h-64"
+      />
       <div className="bg-charcoal text-surface p-6 sm:p-8">
         <p className="label-eyebrow">Your concept direction</p>
         <h2 className="font-display text-4xl sm:text-5xl mt-2 text-surface">

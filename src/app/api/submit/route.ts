@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { submitSchema } from "@/lib/validation";
-import { generateResult } from "@/lib/engine";
+import { generateResult, summariseAnswers } from "@/lib/engine";
 import { renderResultPdf } from "@/lib/pdf";
 import { sendResultEmail, sendInternalNotification } from "@/lib/email";
 import { buildLead, saveLead } from "@/lib/saveLead";
@@ -27,6 +27,27 @@ function rateLimited(ip: string): boolean {
 function clientIp(req: NextRequest): string {
   const fwd = req.headers.get("x-forwarded-for");
   return fwd?.split(",")[0]?.trim() || req.headers.get("x-real-ip") || "unknown";
+}
+
+// Fetch the logo from the app's own origin and return it as a data URI, or undefined
+// if it isn't present. Cached across requests so we don't refetch on every submit.
+let logoCache: string | null | undefined;
+async function loadLogoDataUri(origin: string): Promise<string | undefined> {
+  if (logoCache !== undefined) return logoCache ?? undefined;
+  try {
+    const res = await fetch(`${origin}/landart-logo.png`, { cache: "no-store" });
+    if (!res.ok) {
+      logoCache = null;
+      return undefined;
+    }
+    const buf = Buffer.from(await res.arrayBuffer());
+    const ct = res.headers.get("content-type") || "image/png";
+    logoCache = `data:${ct};base64,${buf.toString("base64")}`;
+    return logoCache;
+  } catch {
+    logoCache = null;
+    return undefined;
+  }
 }
 
 export async function POST(req: NextRequest) {
@@ -67,7 +88,10 @@ export async function POST(req: NextRequest) {
   let stored = false;
 
   try {
-    const pdf = await renderResultPdf(result, name);
+    // Best-effort: embed the Landart logo if public/landart-logo.png exists.
+    // Never let a missing/failed logo break the PDF — fall back to the text wordmark.
+    const logo = await loadLogoDataUri(req.nextUrl.origin);
+    const pdf = await renderResultPdf(result, name, logo);
     emailed = await sendResultEmail({ to: email, name, result, pdf });
   } catch (err) {
     console.error("[submit] pdf/email step failed:", err);
@@ -90,8 +114,14 @@ export async function POST(req: NextRequest) {
     console.error("[submit] saveLead failed — queue for retry:", err);
   }
 
-  // 6. Internal notification (best effort).
-  void sendInternalNotification({ name, email, suburb: suburb || undefined, style: result.style.name });
+  // 6. Internal notification (best effort) — includes the visitor's answers and concept.
+  void sendInternalNotification({
+    name,
+    email,
+    suburb: suburb || undefined,
+    result,
+    answers: summariseAnswers(answers),
+  });
 
   // 7. Return success with the full result so the client can reveal it.
   return NextResponse.json({ ok: true, result, delivery: { emailed, stored } });

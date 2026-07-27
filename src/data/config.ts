@@ -20,9 +20,12 @@ export const resultSizing = {
 export const site = {
   landartUrl:
     process.env.NEXT_PUBLIC_LANDART_URL?.replace(/\/$/, "") ??
-    "https://www.landart.com.au",
+    "https://landart.com.au",
+  // Where every "Book a consult" action points.
+  contactUrl:
+    process.env.NEXT_PUBLIC_LANDART_CONTACT_URL ?? "https://landart.com.au/contact/",
   privacyUrl:
-    process.env.NEXT_PUBLIC_PRIVACY_URL ?? "https://www.landart.com.au/privacy",
+    process.env.NEXT_PUBLIC_PRIVACY_URL ?? "https://landart.com.au/privacy-policy/",
   siteUrl:
     process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ??
     "https://guide.landart.com.au",

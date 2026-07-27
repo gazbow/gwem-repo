@@ -4,6 +4,7 @@ import {
   Page,
   Text,
   View,
+  Image,
   StyleSheet,
   renderToBuffer,
 } from "@react-pdf/renderer";
@@ -47,6 +48,12 @@ const styles = StyleSheet.create({
     letterSpacing: 3,
     color: COLORS.white,
     marginBottom: 10,
+  },
+  logo: {
+    height: 26,
+    marginBottom: 12,
+    objectFit: "contain",
+    alignSelf: "flex-start",
   },
   heroLabel: {
     fontSize: 8,
@@ -112,7 +119,15 @@ const styles = StyleSheet.create({
   },
 });
 
-function GuidePdf({ result, name }: { result: GuideResult; name: string }) {
+function GuidePdf({
+  result,
+  name,
+  logo,
+}: {
+  result: GuideResult;
+  name: string;
+  logo?: string;
+}) {
   return (
     <Document
       title={`Landart Garden Concept — ${result.style.name}`}
@@ -121,7 +136,12 @@ function GuidePdf({ result, name }: { result: GuideResult; name: string }) {
     >
       <Page size="A4" style={styles.page}>
         <View style={styles.hero}>
-          <Text style={styles.wordmark}>LANDART</Text>
+          {logo ? (
+            // eslint-disable-next-line jsx-a11y/alt-text
+            <Image src={logo} style={styles.logo} />
+          ) : (
+            <Text style={styles.wordmark}>LANDART</Text>
+          )}
           <Text style={styles.heroLabel}>Your Garden Concept Direction</Text>
           <Text style={styles.heroName}>{result.style.name}</Text>
         </View>
@@ -175,7 +195,7 @@ function GuidePdf({ result, name }: { result: GuideResult; name: string }) {
           <Text style={styles.ctaHeading}>Ready to talk it through?</Text>
           <Text style={styles.ctaText}>
             Book a consult and we will turn this direction into a design for your
-            space. {site.landartUrl}
+            space. {site.contactUrl}
           </Text>
         </View>
 
@@ -188,7 +208,14 @@ function GuidePdf({ result, name }: { result: GuideResult; name: string }) {
   );
 }
 
-/** Render the result to a PDF Buffer for emailing/attaching. */
-export async function renderResultPdf(result: GuideResult, name: string): Promise<Buffer> {
-  return renderToBuffer(<GuidePdf result={result} name={name} />);
+/**
+ * Render the result to a PDF Buffer for emailing/attaching.
+ * `logo` is an optional data URI (or URL) for the Landart logo; omit to use the text wordmark.
+ */
+export async function renderResultPdf(
+  result: GuideResult,
+  name: string,
+  logo?: string,
+): Promise<Buffer> {
+  return renderToBuffer(<GuidePdf result={result} name={name} logo={logo} />);
 }

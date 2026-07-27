@@ -2,6 +2,7 @@
 
 import type { GuideResult } from "@/lib/types";
 import { analytics } from "@/lib/analytics";
+import { GardenHero } from "@/components/GardenHero";
 import { site } from "@/data/config";
 
 // The complete on-screen concept (Build Spec sections 3 & 7): style, palette, features,
@@ -14,6 +15,14 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
 export function FullResult({ result }: { result: GuideResult }) {
   return (
     <div className="space-y-12">
+      {/* Hero image (tag-matched) */}
+      <GardenHero
+        src={result.image.src}
+        alt={result.image.alt}
+        priority
+        className="h-56 sm:h-80"
+      />
+
       {/* Style header */}
       <header className="bg-charcoal text-surface p-6 sm:p-10">
         <SectionLabel>Your concept direction</SectionLabel>
@@ -114,7 +123,7 @@ export function FullResult({ result }: { result: GuideResult }) {
           turn your concept into a garden built for your space.
         </p>
         <a
-          href={site.landartUrl}
+          href={site.contactUrl}
           target="_blank"
           rel="noopener noreferrer"
           onClick={() => analytics.consultCtaClick("full_result")}

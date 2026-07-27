@@ -1,8 +1,7 @@
 import type { LinkTarget } from "@/lib/types";
 
-// Link targets mapped to real Landart pages performing in search / AI citation
-// (Build Spec section 7). URLs are site-relative paths resolved against the live
-// Landart site at render time. Confirm final URLs against the live site before launch.
+// Link targets mapped to real, confirmed Landart pages (Build Spec section 7). URLs are
+// site-relative paths (trailing slash matches the live site) resolved at render time.
 //
 // `matchTags` decide when a link is offered: a link is eligible when ANY of its
 // tags overlaps the visitor's answer set. Capped at three in the engine.
@@ -11,90 +10,76 @@ export const linkTargets: LinkTarget[] = [
   // --- Services ------------------------------------------------------------
   {
     label: "Garden Design Sydney",
-    url: "/services/garden-design-sydney",
+    url: "/services/garden-design-sydney/",
     kind: "service",
     matchTags: ["style:lush", "style:modern", "style:native", "size:medium", "size:large"],
     priority: 9,
   },
   {
+    label: "Landscaping & Construction",
+    url: "/services/landscaping/",
+    kind: "service",
+    matchTags: ["use:retreat", "use:kitchen", "coastal", "style:native", "style:lush"],
+    priority: 7,
+  },
+  {
     label: "Plunge Pools",
-    url: "/plunge-pools",
+    url: "/plunge-pools/",
     kind: "service",
     matchTags: ["use:pool", "size:small", "size:medium", "style:modern"],
     priority: 8,
   },
   {
+    label: "Pool Design & Build",
+    url: "/services/pool-design-build-sydney/",
+    kind: "service",
+    matchTags: ["use:pool", "size:large"],
+    priority: 7,
+  },
+  {
     label: "Home Building",
-    url: "/services/home-building",
+    url: "/services/home-building/",
     kind: "service",
     matchTags: ["use:entertain", "size:large", "style:modern"],
     priority: 6,
   },
   {
     label: "Elevate Your Home's Exterior",
-    url: "/elevate-your-homes-exterior",
+    url: "/elevate-your-homes-exterior/",
     kind: "service",
     matchTags: ["use:entertain", "use:retreat", "style:modern", "style:lush"],
-    priority: 6,
+    priority: 5,
+  },
+  {
+    label: "Garden Maintenance Sydney",
+    url: "/services/garden-maintenance-sydney/",
+    kind: "service",
+    matchTags: ["style:lush", "use:kitchen", "who:children"],
+    priority: 4,
   },
 
-  // --- Articles ------------------------------------------------------------
+  // --- Article -------------------------------------------------------------
   {
-    label: "Getting the best from coastal Sydney soils",
-    url: "/articles/coastal-soils",
+    label: "Beautiful ways to landscape around a pool",
+    url: "/beautiful-ways-to-landscape-around-a-pool/",
     kind: "article",
-    matchTags: ["soil:sandy", "coastal"],
-    priority: 7,
-  },
-  {
-    label: "Tiger grass for privacy and screening",
-    url: "/articles/tiger-grass",
-    kind: "article",
-    matchTags: ["use:retreat", "style:lush", "coastal"],
-    priority: 5,
-  },
-  {
-    label: "Biophilic design and bringing the garden inside",
-    url: "/articles/biophilic-interiors",
-    kind: "article",
-    matchTags: ["style:lush", "use:retreat", "sun:shade"],
-    priority: 5,
-  },
-  {
-    label: "Why the jacaranda still defines a Sydney summer",
-    url: "/articles/jacaranda",
-    kind: "article",
-    matchTags: ["style:lush", "style:native", "size:large"],
-    priority: 4,
+    matchTags: ["use:pool"],
+    priority: 6,
   },
 
   // --- Projects (gallery) --------------------------------------------------
   {
-    label: "Project: a coastal native garden",
-    url: "/projects/coastal-native",
+    label: "Project: Balgowlah garden & pool",
+    url: "/project/sydney-garden-design-pool-design/",
     kind: "project",
-    matchTags: ["coastal", "soil:sandy", "style:native"],
+    matchTags: ["use:pool", "coastal", "style:modern", "size:large"],
     priority: 7,
   },
   {
-    label: "Project: a structured modern courtyard",
-    url: "/projects/modern-courtyard",
+    label: "Project: Lindfield garden",
+    url: "/project/lindfield/",
     kind: "project",
-    matchTags: ["style:modern", "size:small", "use:entertain"],
-    priority: 7,
-  },
-  {
-    label: "Project: a lush family garden",
-    url: "/projects/lush-family",
-    kind: "project",
-    matchTags: ["style:lush", "use:family", "who:children"],
-    priority: 7,
-  },
-  {
-    label: "Project: grounds with a lap pool",
-    url: "/projects/lap-pool-grounds",
-    kind: "project",
-    matchTags: ["use:pool", "size:large", "style:modern"],
+    matchTags: ["style:lush", "style:native", "size:medium", "use:family"],
     priority: 6,
   },
 ];
