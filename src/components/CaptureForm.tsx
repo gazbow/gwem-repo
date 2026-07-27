@@ -3,7 +3,7 @@
 import { useState } from "react";
 import type { Answers, GuideResult } from "@/lib/types";
 import { analytics } from "@/lib/analytics";
-import { site } from "@/data/config";
+import { site, budgetOptions } from "@/data/config";
 
 // Lead capture (Build Spec section 9). On submit: POST /api/submit, which re-runs the
 // engine server-side, emails the PDF, stores the lead, and returns the full result.
@@ -20,6 +20,7 @@ export function CaptureForm({
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [suburb, setSuburb] = useState("");
+  const [budget, setBudget] = useState("");
   const [consent, setConsent] = useState(false);
   const [company, setCompany] = useState(""); // honeypot
   const [submitting, setSubmitting] = useState(false);
@@ -37,7 +38,7 @@ export function CaptureForm({
       const res = await fetch("/api/submit", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, suburb, consent, company, answers, utm }),
+        body: JSON.stringify({ name, email, suburb, budget, consent, company, answers, utm }),
       });
       const data = await res.json();
       if (!res.ok || !data.ok) {
@@ -103,6 +104,24 @@ export function CaptureForm({
             onChange={(e) => setSuburb(e.target.value)}
             className="w-full border border-hairline bg-surface px-4 py-3 focus:border-charcoal outline-none"
           />
+        </div>
+        <div>
+          <label htmlFor="budget" className="block text-sm font-medium mb-1">
+            Rough budget <span className="text-muted font-normal">(optional)</span>
+          </label>
+          <select
+            id="budget"
+            value={budget}
+            onChange={(e) => setBudget(e.target.value)}
+            className="w-full border border-hairline bg-surface px-4 py-3 focus:border-charcoal outline-none appearance-none"
+          >
+            <option value="">Prefer not to say</option>
+            {budgetOptions.map((b) => (
+              <option key={b} value={b}>
+                {b}
+              </option>
+            ))}
+          </select>
         </div>
 
         {/* Honeypot: hidden from humans, tempting to bots. */}

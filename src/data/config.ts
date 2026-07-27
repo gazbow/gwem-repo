@@ -7,6 +7,16 @@ export const scoring = {
   prefersMatch: 1, // +1 for each matched `prefers` tag
 } as const;
 
+// Optional budget bands offered on the capture form. Edit freely — the form and the
+// server-side validation both read this list, so they stay in sync.
+export const budgetOptions = [
+  "Under $50,000",
+  "$50,000 – $150,000",
+  "$150,000 – $350,000",
+  "$350,000+",
+  "Not sure yet",
+] as const;
+
 export const resultSizing = {
   plantsMin: 5,
   plantsMax: 8,

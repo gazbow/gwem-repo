@@ -25,6 +25,12 @@ import {
   IconScale,
   IconClock,
   IconTools,
+  IconSquarePlus,
+  IconRefresh,
+  IconBulldozer,
+  IconTelescope,
+  IconCalendar,
+  IconRocket,
   type IconProps,
 } from "@tabler/icons-react";
 import type { ComponentType } from "react";
@@ -58,6 +64,12 @@ const MAP: Record<string, ComponentType<IconProps>> = {
   "ti-scale": IconScale,
   "ti-clock": IconClock,
   "ti-tools": IconTools,
+  "ti-square-plus": IconSquarePlus,
+  "ti-refresh": IconRefresh,
+  "ti-bulldozer": IconBulldozer,
+  "ti-telescope": IconTelescope,
+  "ti-calendar": IconCalendar,
+  "ti-rocket": IconRocket,
 };
 
 export function Icon({

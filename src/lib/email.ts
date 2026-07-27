@@ -81,6 +81,7 @@ export async function sendInternalNotification(summary: {
   name: string;
   email: string;
   suburb?: string;
+  budget?: string;
   result: GuideResult;
   answers: { question: string; value: string }[];
 }): Promise<void> {
@@ -113,6 +114,7 @@ export async function sendInternalNotification(summary: {
             <tr><td style="padding:6px 12px 6px 0;color:#8a8680">Name</td><td style="padding:6px 0;font-weight:600">${summary.name}</td></tr>
             <tr><td style="padding:6px 12px 6px 0;color:#8a8680">Email</td><td style="padding:6px 0;font-weight:600"><a href="mailto:${summary.email}">${summary.email}</a></td></tr>
             <tr><td style="padding:6px 12px 6px 0;color:#8a8680">Suburb / postcode</td><td style="padding:6px 0;font-weight:600">${summary.suburb ?? "—"}</td></tr>
+            <tr><td style="padding:6px 12px 6px 0;color:#8a8680">Budget</td><td style="padding:6px 0;font-weight:600">${summary.budget ?? "—"}</td></tr>
           </table>
 
           <p style="color:#c5a47e;letter-spacing:2px;text-transform:uppercase;font-size:11px;margin:0 0 6px">Their answers</p>

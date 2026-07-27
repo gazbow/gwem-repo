@@ -242,4 +242,61 @@ export const questions: Question[] = [
       },
     ],
   },
+  // --- Quick practical questions (captured for the team; don't change the concept) ---
+  {
+    id: "stage",
+    title: "What are we starting with?",
+    helper: "A quick one — it helps us picture the scope.",
+    options: [
+      {
+        id: "blank",
+        label: "A blank slate",
+        helper: "New or empty site",
+        icon: "ti-square-plus",
+        tags: ["stage:new"],
+      },
+      {
+        id: "refresh",
+        label: "An established garden",
+        helper: "Ready for a refresh",
+        icon: "ti-refresh",
+        tags: ["stage:refresh"],
+      },
+      {
+        id: "build",
+        label: "Part of a build or reno",
+        helper: "Alongside works on the house",
+        icon: "ti-bulldozer",
+        tags: ["stage:build"],
+      },
+    ],
+  },
+  {
+    id: "timeframe",
+    title: "When are you hoping to start?",
+    helper: "No commitment — it just helps us plan.",
+    options: [
+      {
+        id: "exploring",
+        label: "Just exploring",
+        helper: "Gathering ideas for now",
+        icon: "ti-telescope",
+        tags: ["time:exploring"],
+      },
+      {
+        id: "soon",
+        label: "In the next 3–6 months",
+        helper: "Starting to plan properly",
+        icon: "ti-calendar",
+        tags: ["time:soon"],
+      },
+      {
+        id: "now",
+        label: "Ready to go now",
+        helper: "Keen to get moving",
+        icon: "ti-rocket",
+        tags: ["time:now"],
+      },
+    ],
+  },
 ];

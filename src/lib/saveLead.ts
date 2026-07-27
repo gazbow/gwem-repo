@@ -8,6 +8,7 @@ export interface Lead {
   name: string;
   email: string;
   suburb?: string;
+  budget?: string;
   consent: boolean;
   answers: Answers;
   resultSummary: {
@@ -27,6 +28,7 @@ export function buildLead(input: {
   name: string;
   email: string;
   suburb?: string;
+  budget?: string;
   consent: boolean;
   answers: Answers;
   result: GuideResult;
@@ -36,6 +38,7 @@ export function buildLead(input: {
     name: input.name,
     email: input.email,
     suburb: input.suburb,
+    budget: input.budget,
     consent: input.consent,
     answers: input.answers,
     resultSummary: {
@@ -87,6 +90,7 @@ const airtableAdapter: Adapter = async (lead) => {
           Name: lead.name,
           Email: lead.email,
           Suburb: lead.suburb ?? "",
+          Budget: lead.budget ?? "",
           Consent: lead.consent,
           Style: lead.resultSummary.style,
           Plants: lead.resultSummary.plants.join(", "),

@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { questions } from "@/data/questions";
+import { budgetOptions } from "@/data/config";
 
 // Server-side validation for the submit payload (Build Spec section 9, step 1).
 
@@ -22,6 +23,8 @@ export const submitSchema = z.object({
   name: z.string().trim().min(1, "Name is required").max(120),
   email: z.string().trim().email("A valid email is required").max(200),
   suburb: z.string().trim().max(120).optional().or(z.literal("")),
+  // Optional budget: must be one of the offered bands, or empty.
+  budget: z.enum(budgetOptions).optional().or(z.literal("")),
   consent: z.literal(true, {
     errorMap: () => ({ message: "Consent is required." }),
   }),

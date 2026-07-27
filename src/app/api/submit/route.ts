@@ -77,7 +77,7 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  const { name, email, suburb, consent, answers, utm } = parsed.data;
+  const { name, email, suburb, budget, consent, answers, utm } = parsed.data;
 
   // 2. Re-run the engine server-side (never trust a client-supplied result).
   const result = generateResult(answers);
@@ -102,6 +102,7 @@ export async function POST(req: NextRequest) {
       name,
       email,
       suburb: suburb || undefined,
+      budget: budget || undefined,
       consent,
       answers,
       result,
@@ -119,6 +120,7 @@ export async function POST(req: NextRequest) {
     name,
     email,
     suburb: suburb || undefined,
+    budget: budget || undefined,
     result,
     answers: summariseAnswers(answers),
   });
