@@ -50,8 +50,8 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   logo: {
-    height: 26,
-    marginBottom: 12,
+    height: 30,
+    marginBottom: 18,
     objectFit: "contain",
     alignSelf: "flex-start",
   },
@@ -135,13 +135,13 @@ function GuidePdf({
       subject="Your tailored Sydney garden concept"
     >
       <Page size="A4" style={styles.page}>
+        {/* Dark logo sits on the light page background, above the charcoal band. */}
+        {logo ? (
+          // eslint-disable-next-line jsx-a11y/alt-text
+          <Image src={logo} style={styles.logo} />
+        ) : null}
         <View style={styles.hero}>
-          {logo ? (
-            // eslint-disable-next-line jsx-a11y/alt-text
-            <Image src={logo} style={styles.logo} />
-          ) : (
-            <Text style={styles.wordmark}>LANDART</Text>
-          )}
+          {logo ? null : <Text style={styles.wordmark}>LANDART</Text>}
           <Text style={styles.heroLabel}>Your Garden Concept Direction</Text>
           <Text style={styles.heroName}>{result.style.name}</Text>
         </View>
