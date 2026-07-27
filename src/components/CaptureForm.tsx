@@ -56,7 +56,7 @@ export function CaptureForm({
   return (
     <form onSubmit={handleSubmit} className="bg-panel border border-hairline p-6 sm:p-8">
       <p className="label-eyebrow">Almost there</p>
-      <h2 className="font-display text-3xl mt-2 text-charcoal">
+      <h2 className="font-display text-3xl mt-2 text-cream">
         Where should we send your guide?
       </h2>
       <p className="mt-2 text-muted text-sm">
@@ -75,7 +75,7 @@ export function CaptureForm({
             autoComplete="name"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="w-full border border-hairline bg-surface px-4 py-3 focus:border-charcoal outline-none"
+            className="w-full border border-hairline bg-surface text-cream px-4 py-3 focus:border-gold outline-none"
           />
         </div>
         <div>
@@ -89,7 +89,7 @@ export function CaptureForm({
             autoComplete="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full border border-hairline bg-surface px-4 py-3 focus:border-charcoal outline-none"
+            className="w-full border border-hairline bg-surface text-cream px-4 py-3 focus:border-gold outline-none"
           />
         </div>
         <div>
@@ -102,7 +102,7 @@ export function CaptureForm({
             autoComplete="postal-code"
             value={suburb}
             onChange={(e) => setSuburb(e.target.value)}
-            className="w-full border border-hairline bg-surface px-4 py-3 focus:border-charcoal outline-none"
+            className="w-full border border-hairline bg-surface text-cream px-4 py-3 focus:border-gold outline-none"
           />
         </div>
         <div>
@@ -113,7 +113,7 @@ export function CaptureForm({
             id="budget"
             value={budget}
             onChange={(e) => setBudget(e.target.value)}
-            className="w-full border border-hairline bg-surface px-4 py-3 focus:border-charcoal outline-none appearance-none"
+            className="w-full border border-hairline bg-surface text-cream px-4 py-3 focus:border-gold outline-none appearance-none"
           >
             <option value="">Prefer not to say</option>
             {budgetOptions.map((b) => (
@@ -137,7 +137,7 @@ export function CaptureForm({
           />
         </div>
 
-        <label className="flex items-start gap-3 text-sm text-charcoal cursor-pointer">
+        <label className="flex items-start gap-3 text-sm text-cream cursor-pointer">
           <input
             type="checkbox"
             required
@@ -162,7 +162,7 @@ export function CaptureForm({
       </div>
 
       {error ? (
-        <p role="alert" className="mt-4 text-sm text-charcoal bg-gold/30 px-4 py-3">
+        <p role="alert" className="mt-4 text-sm text-cream border border-gold bg-gold/15 px-4 py-3">
           {error}
         </p>
       ) : null}

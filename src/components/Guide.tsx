@@ -171,7 +171,7 @@ export function Guide() {
             <button
               type="button"
               onClick={reset}
-              className="text-xs uppercase tracking-label text-muted hover:text-charcoal"
+              className="text-xs uppercase tracking-label text-muted hover:text-cream"
             >
               Start over
             </button>
@@ -263,7 +263,7 @@ function Landing({ onStart }: { onStart: () => void }) {
   return (
     <div className="text-center py-8 sm:py-16">
       <p className="label-eyebrow">Landart Garden Guide</p>
-      <h1 className="font-display text-4xl sm:text-6xl mt-4 leading-tight text-charcoal">
+      <h1 className="font-display text-4xl sm:text-6xl mt-4 leading-tight text-cream">
         Picture your garden
         <br /> in two minutes
       </h1>
@@ -295,7 +295,7 @@ function Building() {
         <span className="h-2 w-2 bg-gold animate-pulse [animation-delay:150ms]" />
         <span className="h-2 w-2 bg-gold animate-pulse [animation-delay:300ms]" />
       </div>
-      <p className="font-display text-2xl text-charcoal">Shaping your concept…</p>
+      <p className="font-display text-2xl text-cream">Shaping your concept…</p>
     </div>
   );
 }

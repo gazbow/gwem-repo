@@ -27,7 +27,7 @@ export function QuestionStep({
 
   return (
     <div>
-      <h1 className="font-display text-3xl sm:text-4xl leading-tight text-charcoal">
+      <h1 className="font-display text-3xl sm:text-4xl leading-tight text-cream">
         {question.title}
       </h1>
       <p className="mt-2 text-muted text-sm sm:text-base">{question.helper}</p>
@@ -35,7 +35,7 @@ export function QuestionStep({
       {/* Prominent multi-select callout — a gold pill that's hard to miss. */}
       {multi ? (
         <div className="mt-4 flex items-center gap-2" aria-live="polite">
-          <span className="inline-flex items-center gap-2 bg-gold/15 border border-gold text-charcoal text-xs font-semibold uppercase tracking-label px-3 py-1.5">
+          <span className="inline-flex items-center gap-2 bg-gold/20 border border-gold text-gold text-xs font-semibold uppercase tracking-label px-3 py-1.5">
             <IconCheck size={14} stroke={2.5} aria-hidden />
             {multiLabel}
           </span>
@@ -62,39 +62,38 @@ export function QuestionStep({
               aria-disabled={disabled}
               disabled={disabled}
               onClick={() => onToggle(opt.id)}
-              className={`relative flex items-center gap-4 border-2 p-4 pr-11 text-left min-h-[76px] transition-colors
+              className={`relative flex items-center gap-4 border-2 p-4 text-left min-h-[76px] transition-colors ${
+                multi ? "pr-11" : ""
+              }
                 ${
                   isSelected
                     ? "border-gold bg-panel"
-                    : "border-hairline bg-surface hover:border-charcoal"
+                    : "border-hairline bg-surface hover:border-gold"
                 }
                 ${disabled ? "opacity-40 cursor-not-allowed" : ""}`}
             >
-              <span className={`shrink-0 ${isSelected ? "text-gold" : "text-charcoal"}`}>
+              <span className={`shrink-0 ${isSelected ? "text-gold" : "text-cream"}`}>
                 <Icon name={opt.icon} size={34} />
               </span>
               <span>
-                <span className="block font-medium text-charcoal">{opt.label}</span>
+                <span className="block font-medium text-cream">{opt.label}</span>
                 {opt.helper ? (
                   <span className="block text-sm text-muted mt-0.5">{opt.helper}</span>
                 ) : null}
               </span>
 
-              {/* Selection indicator: a checkbox for multi-select, a radio dot for single. */}
-              <span
-                className={`absolute top-3 right-3 flex items-center justify-center h-5 w-5 border-2 ${
-                  multi ? "" : "rounded-full"
-                } ${isSelected ? "border-gold bg-gold text-charcoal" : "border-hairline bg-surface"}`}
-                aria-hidden
-              >
-                {isSelected ? (
-                  multi ? (
-                    <IconCheck size={13} stroke={3} />
-                  ) : (
-                    <span className="h-2 w-2 bg-charcoal rounded-full" />
-                  )
-                ) : null}
-              </span>
+              {/* Checkbox indicator — multi-select only, so it clearly signals "pick more than one".
+                  Single-select relies on the gold border + fill when chosen. */}
+              {multi ? (
+                <span
+                  className={`absolute top-3 right-3 flex items-center justify-center h-5 w-5 border-2 ${
+                    isSelected ? "border-gold bg-gold text-charcoal" : "border-hairline bg-surface"
+                  }`}
+                  aria-hidden
+                >
+                  {isSelected ? <IconCheck size={13} stroke={3} /> : null}
+                </span>
+              ) : null}
             </button>
           );
         })}

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import { Montserrat, Cormorant } from "next/font/google";
 import { GA_MEASUREMENT_ID } from "@/lib/analytics";
@@ -40,6 +40,10 @@ export const metadata: Metadata = {
     type: "website",
   },
   robots: { index: true, follow: true },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#363636", // dark browser chrome to match the theme
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

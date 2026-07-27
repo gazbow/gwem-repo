@@ -77,7 +77,7 @@ export default function SeoResultPage({ params }: { params: { slug: string } }) 
           </Link>
           <Link
             href="/"
-            className="text-xs uppercase tracking-label text-muted hover:text-charcoal"
+            className="text-xs uppercase tracking-label text-muted hover:text-cream"
           >
             Build your own
           </Link>

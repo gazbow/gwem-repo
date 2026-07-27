@@ -14,12 +14,12 @@ export function ResultPreview({ result }: { result: GuideResult }) {
         priority
         className="h-48 sm:h-64"
       />
-      <div className="bg-charcoal text-surface p-6 sm:p-8">
+      <div className="bg-ink2 text-cream p-6 sm:p-8 border-t-2 border-gold">
         <p className="label-eyebrow">Your concept direction</p>
-        <h2 className="font-display text-4xl sm:text-5xl mt-2 text-surface">
+        <h2 className="font-display text-4xl sm:text-5xl mt-2 text-cream">
           {result.teaser.styleName}
         </h2>
-        <p className="mt-3 text-page/90 max-w-xl">{result.teaser.summaryLine}</p>
+        <p className="mt-3 text-cream/85 max-w-xl">{result.teaser.summaryLine}</p>
       </div>
 
       <div className="p-6 sm:p-8">
@@ -28,7 +28,7 @@ export function ResultPreview({ result }: { result: GuideResult }) {
           {result.teaser.headlineItems.map((item) => (
             <li key={item} className="flex items-center gap-3">
               <span className="h-1.5 w-1.5 bg-gold shrink-0" aria-hidden />
-              <span className="text-charcoal">{item}</span>
+              <span className="text-cream">{item}</span>
             </li>
           ))}
         </ul>

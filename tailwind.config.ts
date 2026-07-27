@@ -6,13 +6,16 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        charcoal: "#363636",
-        gold: "#c5a47e",
-        page: "#ece9e3", // off-white page background
-        surface: "#ffffff", // card / surface white
-        panel: "#faf8f4", // warm off-white panel
-        muted: "#8a8680", // muted text
-        hairline: "#d8d4cc", // hairline border
+        // Dark theme, matching the main Landart site (charcoal ground, off-white text, gold accent).
+        charcoal: "#363636", // used as text-on-gold, and the page ground
+        gold: "#c5a47e", // accent (unchanged)
+        cream: "#ece9e3", // primary text / off-white on dark
+        page: "#363636", // app background (charcoal)
+        ink2: "#2b2b2b", // darker band for contrast (hero / footer)
+        surface: "#404040", // raised card surface
+        panel: "#47423a", // warm dark fill (selected tiles, side panels)
+        muted: "#ada89f", // muted text on dark
+        hairline: "#4f4d49", // hairline border on dark
       },
       fontFamily: {
         // ivyora-display is the wordmark serif; Cormorant is the placeholder fallback (spec 4).

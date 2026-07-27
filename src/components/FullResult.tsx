@@ -24,15 +24,15 @@ export function FullResult({ result }: { result: GuideResult }) {
       />
 
       {/* Style header */}
-      <header className="bg-charcoal text-surface p-6 sm:p-10">
+      <header className="bg-ink2 text-cream p-6 sm:p-10 border-t-2 border-gold">
         <SectionLabel>Your concept direction</SectionLabel>
-        <h1 className="font-display text-4xl sm:text-6xl mt-3 text-surface">
+        <h1 className="font-display text-4xl sm:text-6xl mt-3 text-cream">
           {result.style.name}
         </h1>
-        <p className="mt-4 text-page/90 max-w-2xl leading-relaxed">
+        <p className="mt-4 text-cream/85 max-w-2xl leading-relaxed">
           {result.style.summary}
         </p>
-        <p className="mt-4 text-page/70 text-sm max-w-2xl">
+        <p className="mt-4 text-cream/65 text-sm max-w-2xl">
           <span className="text-gold uppercase tracking-label text-xs">
             Materials &amp; palette&nbsp;&nbsp;
           </span>
@@ -47,7 +47,7 @@ export function FullResult({ result }: { result: GuideResult }) {
           {result.plants.map((p) => (
             <div key={p.name} className="border-b border-hairline py-4">
               <div className="flex flex-wrap items-baseline gap-x-3">
-                <h3 className="font-medium text-lg text-charcoal">{p.name}</h3>
+                <h3 className="font-medium text-lg text-cream">{p.name}</h3>
                 <span className="text-sm text-muted italic">{p.botanical}</span>
               </div>
               <p className="text-muted mt-1">{p.note}</p>
@@ -62,7 +62,7 @@ export function FullResult({ result }: { result: GuideResult }) {
         <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
           {result.features.map((f) => (
             <div key={f.name} className="border border-hairline bg-surface p-5">
-              <h3 className="font-medium text-charcoal">{f.name}</h3>
+              <h3 className="font-medium text-cream">{f.name}</h3>
               <p className="text-sm text-muted mt-1">{f.note}</p>
               {f.link ? (
                 <a
@@ -70,7 +70,7 @@ export function FullResult({ result }: { result: GuideResult }) {
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => analytics.resultLinkClick(f.link!, "feature")}
-                  className="inline-block mt-3 text-sm text-charcoal underline hover:text-gold"
+                  className="inline-block mt-3 text-sm text-cream underline hover:text-gold"
                 >
                   See how we build it
                 </a>
@@ -84,7 +84,7 @@ export function FullResult({ result }: { result: GuideResult }) {
       <section>
         <SectionLabel>On upkeep</SectionLabel>
         <div className="mt-4 bg-panel border-l-2 border-gold p-6">
-          <p className="text-charcoal leading-relaxed">{result.maintenanceNote}</p>
+          <p className="text-cream leading-relaxed">{result.maintenanceNote}</p>
         </div>
       </section>
 
@@ -102,7 +102,7 @@ export function FullResult({ result }: { result: GuideResult }) {
                   onClick={() => analytics.resultLinkClick(l.url, l.kind)}
                   className="flex items-center justify-between py-4 group"
                 >
-                  <span className="text-charcoal group-hover:text-gold transition-colors">
+                  <span className="text-cream group-hover:text-gold transition-colors">
                     {l.label}
                   </span>
                   <span className="label-eyebrow">{l.kind}</span>

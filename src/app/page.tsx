@@ -37,7 +37,7 @@ export default function HomePage() {
       <section className="border-t border-hairline bg-page">
         <div className="mx-auto max-w-3xl px-5 py-12">
           <p className="label-eyebrow">Example concepts</p>
-          <h2 className="font-display text-2xl mt-2 text-charcoal">
+          <h2 className="font-display text-2xl mt-2 text-cream">
             A few Sydney gardens the guide has shaped
           </h2>
           <ul className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -45,9 +45,9 @@ export default function HomePage() {
               <li key={c.slug}>
                 <a
                   href={`/guide/${c.slug}`}
-                  className="block border border-hairline bg-surface px-4 py-3 hover:border-charcoal transition-colors"
+                  className="block border border-hairline bg-surface px-4 py-3 hover:border-gold transition-colors"
                 >
-                  <span className="text-charcoal">{c.title}</span>
+                  <span className="text-cream">{c.title}</span>
                 </a>
               </li>
             ))}

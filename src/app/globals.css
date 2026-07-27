@@ -12,7 +12,7 @@
     -webkit-text-size-adjust: 100%;
   }
   body {
-    @apply bg-page text-charcoal font-body antialiased;
+    @apply bg-page text-cream font-body antialiased;
   }
   /* Firm brand rule: square corners everywhere. */
   * {
@@ -20,7 +20,7 @@
   }
   /* Visible focus for keyboard users (accessibility, section 11). */
   :focus-visible {
-    outline: 2px solid #363636;
+    outline: 2px solid #c5a47e;
     outline-offset: 2px;
   }
 }
@@ -29,19 +29,22 @@
   .label-eyebrow {
     @apply text-gold uppercase text-xs font-medium tracking-label;
   }
+  /* Primary action on dark: off-white fill, charcoal label. */
   .btn-primary {
-    @apply inline-flex items-center justify-center bg-charcoal text-surface uppercase
-      tracking-button text-sm font-medium px-8 py-4 transition-colors hover:bg-black
+    @apply inline-flex items-center justify-center bg-cream text-charcoal uppercase
+      tracking-button text-sm font-medium px-8 py-4 transition-opacity hover:opacity-90
       disabled:opacity-50 disabled:cursor-not-allowed;
   }
+  /* Conversion action: gold fill, charcoal label. */
   .btn-gold {
     @apply inline-flex items-center justify-center bg-gold text-charcoal uppercase
       tracking-button text-sm font-semibold px-8 py-4 transition-opacity hover:opacity-90
       disabled:opacity-50 disabled:cursor-not-allowed;
   }
+  /* Secondary / outline action. */
   .btn-ghost {
-    @apply inline-flex items-center justify-center border border-hairline text-charcoal
-      uppercase tracking-button text-sm px-6 py-3 transition-colors hover:border-charcoal;
+    @apply inline-flex items-center justify-center border border-hairline text-cream
+      uppercase tracking-button text-sm px-6 py-3 transition-colors hover:border-gold;
   }
 }
 
