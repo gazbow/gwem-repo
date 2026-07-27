@@ -180,6 +180,41 @@ export const questions: Question[] = [
     ],
   },
   {
+    id: "maint",
+    title: "How hands-on do you want to be?",
+    helper: "This tunes the planting and how we plan the upkeep.",
+    options: [
+      {
+        id: "high",
+        label: "Hands on",
+        helper: "I enjoy pottering in the garden",
+        icon: "ti-shovel",
+        tags: ["maint:high"],
+      },
+      {
+        id: "balanced",
+        label: "A balance",
+        helper: "Some care, nothing overwhelming",
+        icon: "ti-scale",
+        tags: ["maint:balanced"],
+      },
+      {
+        id: "low",
+        label: "Close to effortless",
+        helper: "Keep it genuinely low-maintenance",
+        icon: "ti-clock",
+        tags: ["maint:low"],
+      },
+      {
+        id: "managed",
+        label: "I'd like Landart to maintain it",
+        helper: "A professional maintenance plan",
+        icon: "ti-tools",
+        tags: ["maint:low", "maint:managed"],
+      },
+    ],
+  },
+  {
     id: "style",
     title: "Which direction feels most you?",
     helper: "There's no wrong answer — it steers the mood.",
@@ -207,18 +242,4 @@ export const questions: Question[] = [
       },
     ],
   },
-  // --- Optional seventh question (Build Spec section 5, kept for a later version) ---
-  // Uncomment to add. The engine already reads maint:* tags when deriving the
-  // maintenance note; no engine change is needed.
-  //
-  // {
-  //   id: "maint",
-  //   title: "How hands-on do you want to be?",
-  //   helper: "This tunes the upkeep.",
-  //   options: [
-  //     { id: "high", label: "Hands on", helper: "Happy to potter", icon: "ti-shovel", tags: ["maint:high"] },
-  //     { id: "balanced", label: "A balance", helper: "Some care, not a chore", icon: "ti-scale", tags: ["maint:balanced"] },
-  //     { id: "low", label: "Close to effortless", helper: "Set and forget", icon: "ti-clock", tags: ["maint:low"] },
-  //   ],
-  // },
 ];

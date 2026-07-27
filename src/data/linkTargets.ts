@@ -54,8 +54,8 @@ export const linkTargets: LinkTarget[] = [
     label: "Garden Maintenance Sydney",
     url: "/services/garden-maintenance-sydney/",
     kind: "service",
-    matchTags: ["style:lush", "use:kitchen", "who:children"],
-    priority: 4,
+    matchTags: ["maint:managed", "maint:high", "style:lush", "use:kitchen"],
+    priority: 8,
   },
 
   // --- Article -------------------------------------------------------------

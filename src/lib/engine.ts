@@ -126,18 +126,23 @@ function maintenanceNote(
   ];
   const avg = loads.length ? loads.reduce((a, b) => a + b, 0) / loads.length : 2;
 
-  // Optional Q7 (maint:*) nudges the derived band if present.
+  // If the visitor wants Landart to look after it, lead with that.
+  if (tags.has("maint:managed")) {
+    return "You told us you'd rather leave the upkeep to us — so we'd pair this garden with a Landart maintenance plan. Our team knows every garden we design and visits on a schedule to clip, feed and refine it through the seasons, keeping it looking exactly as intended without you lifting a finger.";
+  }
+
+  // Maintenance question nudges the derived band if present.
   let band: MaintenanceLoad = avg < 1.6 ? "low" : avg < 2.4 ? "balanced" : "high";
   if (tags.has("maint:low")) band = band === "high" ? "balanced" : "low";
   if (tags.has("maint:high")) band = band === "low" ? "balanced" : "high";
 
   switch (band) {
     case "low":
-      return "This direction is built to be close to effortless. The planting is hardy and slow-growing, so beyond a seasonal tidy and a check of the irrigation, it largely looks after itself.";
+      return "This direction is built to be close to effortless. The planting is hardy and slow-growing, so beyond a seasonal tidy and a check of the irrigation, it largely looks after itself. If you'd rather not think about it at all, Landart can look after it for you.";
     case "high":
-      return "This is a hands-on garden that rewards the attention — expect regular clipping, feeding and seasonal replanting to keep it at its best. Many clients pair it with a maintenance visit to stay on top of the detail.";
+      return "This is a hands-on garden that rewards the attention — expect regular clipping, feeding and seasonal replanting to keep it at its best. Many clients pair it with a Landart maintenance visit to stay on top of the detail.";
     default:
-      return "The upkeep here is moderate and predictable: a clip and feed through the growing season, occasional pruning to hold the shapes, and a light hand the rest of the year. Comfortable for a keen owner, easy to hand to a gardener.";
+      return "The upkeep here is moderate and predictable: a clip and feed through the growing season, occasional pruning to hold the shapes, and a light hand the rest of the year. Comfortable for a keen owner, or easy to hand to Landart's maintenance team.";
   }
 }
 
@@ -183,6 +188,16 @@ export function generateResult(answers: Answers, opts: EngineOptions = {}): Guid
     })
     .filter((x): x is Scored<(typeof linkTargets)[number]> => x !== null);
   const rankedLinks = rank(scoredLinks).slice(0, resultSizing.linksMax);
+
+  // If the visitor asked Landart to maintain the garden, always show the maintenance
+  // page — it's a direct intent, so it shouldn't be crowded out by other matches.
+  if (tags.has("maint:managed")) {
+    const maintLink = linkTargets.find((l) => l.matchTags.includes("maint:managed"));
+    if (maintLink && !rankedLinks.some((s) => s.item.url === maintLink.url)) {
+      rankedLinks.pop(); // make room within the cap
+      rankedLinks.push({ item: maintLink, score: 1, priority: maintLink.priority ?? 0 });
+    }
+  }
 
   // --- Assemble ---
   const resultPlants = selectedPlants.map((p) => ({

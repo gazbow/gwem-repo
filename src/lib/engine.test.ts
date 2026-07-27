@@ -123,6 +123,15 @@ describe("recommendation engine", () => {
     expect(combos).toBe(4 * 3 * 4 * 3);
   });
 
+  it("'Landart to maintain it' → maintenance note offers the managed plan and surfaces the maintenance page", () => {
+    const r = generateResult({
+      ...largeModernLapPool,
+      maint: ["low", "managed"],
+    });
+    expect(r.maintenanceNote.toLowerCase()).toContain("maintenance plan");
+    expect(r.links.some((l) => l.url.includes("garden-maintenance"))).toBe(true);
+  });
+
   it("collectTags gathers every tag from multi-select answers", () => {
     const tags = collectTags(largeModernLapPool);
     expect(tags.has("use:pool")).toBe(true);
