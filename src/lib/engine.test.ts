@@ -135,17 +135,17 @@ describe("recommendation engine", () => {
 
   it("budget bands adapt to the answers (compact courtyard vs large grounds with a pool)", () => {
     const compact = budgetBandsFor(collectTags(shadedCourtyardRetreat));
-    expect(compact[0]).toBe("Under $10,000");
-    expect(compact).not.toContain("$1M+");
+    expect(compact[0]).toBe("Under $5,000");
+    expect(compact).not.toContain("$250,000+");
 
     const premium = budgetBandsFor(collectTags(largeModernLapPool)); // large + pool
-    expect(premium).toContain("$1M+");
-    expect(premium[0]).toBe("$100,000 – $250,000");
+    expect(premium).toContain("$250,000+");
+    expect(premium[0]).toBe("$25,000 – $75,000");
 
-    // A mid-size garden sits in between — no sub-$10k, no $1M+.
+    // A mid-size garden sits in between — no sub-$5k, no $250k+.
     const mid = budgetBandsFor(collectTags(familyGardenYoungChildren));
-    expect(mid).not.toContain("Under $10,000");
-    expect(mid).not.toContain("$1M+");
+    expect(mid).not.toContain("Under $5,000");
+    expect(mid).not.toContain("$250,000+");
   });
 
   it("collectTags gathers every tag from multi-select answers", () => {

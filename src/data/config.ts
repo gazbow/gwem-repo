@@ -13,29 +13,33 @@ export const scoring = {
 // read from here, so they stay in sync.
 export const budgetTiers = {
   // Compact sites (courtyard / balcony / rooftop), no pool.
-  compact: ["Under $10,000", "$10,000 – $25,000", "$25,000 – $50,000", "$50,000 – $100,000"],
+  compact: ["Under $5,000", "$5,000 – $15,000", "$15,000 – $30,000", "$30,000+"],
   // Mid-size gardens, or compact sites with a pool.
-  modest: ["$25,000 – $50,000", "$50,000 – $100,000", "$100,000 – $200,000", "$200,000+"],
+  modest: ["$10,000 – $25,000", "$25,000 – $50,000", "$50,000 – $75,000", "$75,000+"],
   // Large grounds, or mid-size gardens with a pool.
-  substantial: ["$50,000 – $100,000", "$100,000 – $200,000", "$200,000 – $350,000", "$350,000+"],
+  substantial: ["$20,000 – $50,000", "$50,000 – $100,000", "$100,000 – $150,000", "$150,000+"],
   // Large grounds with a pool, or gardens delivered alongside a build/renovation.
-  premium: ["$100,000 – $250,000", "$250,000 – $500,000", "$500,000 – $1M", "$1M+"],
+  premium: ["$25,000 – $75,000", "$75,000 – $150,000", "$150,000 – $250,000", "$250,000+"],
 } as const;
 
 // Superset of every band, for server-side validation (the client only ever shows a subset).
 export const allBudgetOptions = [
-  "Under $10,000",
+  "Under $5,000",
+  "$5,000 – $15,000",
+  "$15,000 – $30,000",
+  "$30,000+",
   "$10,000 – $25,000",
   "$25,000 – $50,000",
+  "$50,000 – $75,000",
+  "$75,000+",
+  "$20,000 – $50,000",
   "$50,000 – $100,000",
-  "$100,000 – $200,000",
-  "$200,000+",
-  "$200,000 – $350,000",
-  "$350,000+",
-  "$100,000 – $250,000",
-  "$250,000 – $500,000",
-  "$500,000 – $1M",
-  "$1M+",
+  "$100,000 – $150,000",
+  "$150,000+",
+  "$25,000 – $75,000",
+  "$75,000 – $150,000",
+  "$150,000 – $250,000",
+  "$250,000+",
 ] as const;
 
 // Choose the band set from the visitor's answer tags (size is the main driver;
