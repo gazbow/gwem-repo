@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import type { Answers, GuideResult } from "@/lib/types";
 import { analytics } from "@/lib/analytics";
-import { site, budgetOptions } from "@/data/config";
+import { collectTags } from "@/lib/engine";
+import { site, budgetBandsFor } from "@/data/config";
 
 // Lead capture (Build Spec section 9). On submit: POST /api/submit, which re-runs the
 // engine server-side, emails the PDF, stores the lead, and returns the full result.
@@ -25,6 +26,9 @@ export function CaptureForm({
   const [company, setCompany] = useState(""); // honeypot
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  // Budget bands adapt to the answers (site size, a pool, part of a build).
+  const budgetBands = useMemo(() => budgetBandsFor(collectTags(answers)), [answers]);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -116,7 +120,7 @@ export function CaptureForm({
             className="w-full border border-hairline bg-surface text-cream px-4 py-3 focus:border-gold outline-none appearance-none"
           >
             <option value="">Prefer not to say</option>
-            {budgetOptions.map((b) => (
+            {budgetBands.map((b) => (
               <option key={b} value={b}>
                 {b}
               </option>

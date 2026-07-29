@@ -1,5 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { generateResult, collectTags } from "@/lib/engine";
+import { budgetBandsFor } from "@/data/config";
 import { questions } from "@/data/questions";
 import { plants } from "@/data/plants";
 import type { Answers } from "@/lib/types";
@@ -130,6 +131,21 @@ describe("recommendation engine", () => {
     });
     expect(r.maintenanceNote.toLowerCase()).toContain("maintenance plan");
     expect(r.links.some((l) => l.url.includes("garden-maintenance"))).toBe(true);
+  });
+
+  it("budget bands adapt to the answers (compact courtyard vs large grounds with a pool)", () => {
+    const compact = budgetBandsFor(collectTags(shadedCourtyardRetreat));
+    expect(compact[0]).toBe("Under $10,000");
+    expect(compact).not.toContain("$1M+");
+
+    const premium = budgetBandsFor(collectTags(largeModernLapPool)); // large + pool
+    expect(premium).toContain("$1M+");
+    expect(premium[0]).toBe("$100,000 – $250,000");
+
+    // A mid-size garden sits in between — no sub-$10k, no $1M+.
+    const mid = budgetBandsFor(collectTags(familyGardenYoungChildren));
+    expect(mid).not.toContain("Under $10,000");
+    expect(mid).not.toContain("$1M+");
   });
 
   it("collectTags gathers every tag from multi-select answers", () => {
