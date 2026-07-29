@@ -24,19 +24,21 @@ Drop 8–10 photos into `public/gardens/` using **exactly these filenames**. The
 picks the best match for each visitor's answers (see `src/data/gardenImages.ts`):
 
 ```
-public/gardens/coastal-native.jpg     coastal, sandy, native planting
-public/gardens/native-grasses.jpg     full-sun native / grasses
-public/gardens/modern-courtyard.jpg   small structured / modern courtyard
-public/gardens/modern-grounds.jpg     large modern grounds
-public/gardens/modern-pool.jpg        modern garden with a pool
-public/gardens/lush-family.jpg        lush green family garden
-public/gardens/lush-tropical.jpg      lush / tropical, coastal
-public/gardens/shaded-retreat.jpg     shaded courtyard / retreat, ferns
-public/gardens/entertaining.jpg       entertaining-focused garden
-public/gardens/default.jpg            fallback used when nothing else matches
+public/gardens/coastal-native.webp    coastal, sandy, native planting
+public/gardens/native-grasses.webp    full-sun native / grasses
+public/gardens/modern-courtyard.webp  small structured / modern courtyard
+public/gardens/modern-grounds.webp    large modern grounds
+public/gardens/modern-pool.webp       modern garden with a pool
+public/gardens/lush-family.webp       lush green family garden
+public/gardens/lush-tropical.webp     lush / tropical, coastal
+public/gardens/shaded-retreat.webp    shaded courtyard / retreat, ferns
+public/gardens/entertaining.webp      entertaining-focused garden
+public/gardens/default.webp           fallback used when nothing else matches
 ```
 
-- **Landscape orientation**, ~1600×1000px, optimised (aim for <300KB each).
+- **Landscape orientation**, ~1600×1000px, WebP, optimised (aim for <200KB each).
+  JPEG or PNG also work if you name the files to match and update the extensions in
+  `src/data/gardenImages.ts`.
 - **Use Landart's own project photography** — it's on-brand, licensed, and far stronger
   than stock. Any image that doesn't load simply won't show (no broken-image icon), so
   you can add them one at a time.
